@@ -1,15 +1,29 @@
-# brightness
+# Screen
+A Flutter plugin to manage the device's screen on Android and iOS.
 
-A new flutter plugin project.
+## Usage
+To use this plugin, add `brightness` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
-## Getting Started
+Make sure you add the following permissions to your Android Manifest
+```
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+```
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## Example
+``` dart
+// Import package
+import 'package:birghtness/birghtness.dart';
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// Get the current brightness:
+double brightness = await Screen.brightness;
 
+// Set the brightness:
+Screen.setBrightness(0.5);
+```
+## Origin
+
+Originally, this plugin was based on [`screen`](https://pub.dev/packages/screen).  
+Specifically, the brightness functionality was extracted into this plugin due to lack of maintenance
+by the author of the `screen` plugin.
+
+Today, the `brightness` plugin has been completely refreshed.
