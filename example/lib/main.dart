@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void initPlatformState() async {
-    _brightness = await Screen.brightness;
+    _brightness = await ScreenBrightness.value;
     if (mounted) setState(() {});
   }
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            appBar: AppBar(title: const Text('Screen plugin example')),
+            appBar: AppBar(title: const Text('Brightness plugin example')),
             body: Center(
                 child: Column(children: <Widget>[
               const Text("Brightness :"),
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
                     setState(() {
                       _brightness = b;
                     });
-                    Screen.setBrightness(b);
+                    ScreenBrightness.set(b);
                   })
             ]))));
   }
