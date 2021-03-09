@@ -10,16 +10,16 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
-public class ScreenPlugin implements MethodCallHandler {
+public class BrightnessPlugin implements MethodCallHandler {
 
-  private ScreenPlugin(Registrar registrar){
+  private BrightnessPlugin(Registrar registrar){
     this._registrar = registrar;
   }
   private Registrar _registrar;
 
   public static void registerWith(Registrar registrar) {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "github.com/fastogt/brightness");
-    channel.setMethodCallHandler(new ScreenPlugin(registrar));
+    channel.setMethodCallHandler(new BrightnessPlugin(registrar));
   }
 
   @Override
