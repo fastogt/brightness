@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  double _brightness = 1.0;
+  double? _brightness = 1.0;
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
                 child: Column(children: <Widget>[
               const Text("Brightness :"),
               Slider(
-                  value: _brightness,
+                  value: _brightness!,
                   onChanged: (double b) {
                     setState(() {
                       _brightness = b;
