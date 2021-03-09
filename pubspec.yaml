@@ -1,6 +1,7 @@
 name: brightness
 description: A Flutter plugin to control brightness of the device's screen on Android and iOS.
 version: 0.2.2
+repository: https://github.com/fastogt/brightness
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
