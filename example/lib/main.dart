@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:brightness/brightness.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp();
+
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() {
+    return _MyAppState();
+  }
 }
 
 class _MyAppState extends State<MyApp> {
@@ -13,47 +17,34 @@ class _MyAppState extends State<MyApp> {
   double _brightness = 1.0;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     initPlatformState();
   }
 
-  initPlatformState() async {
-    bool keptOn = await Screen.isKeptOn;
+  void initPlatformState() async {
     double brightness = await Screen.brightness;
-    setState((){
-      _isKeptOn = keptOn;
+    setState(() {
       _brightness = brightness;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(title: new Text('Screen plugin example')),
-        body: new Center(
-            child: new Column(
-                children: <Widget>[
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Text("Screen is kept on ? "),
-                      new Checkbox(value: _isKeptOn, onChanged: (bool b){
-                        Screen.keepOn(b);
-                        setState((){_isKeptOn = b; });
-                      })
-                    ]
-                  ),
-                  new Text("Brightness :"),
-                  new Slider(value : _brightness, onChanged : (double b){
-                    setState((){_brightness = b;});
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Screen plugin example')),
+            body: Center(
+                child: Column(children: <Widget>[
+              Text("Brightness :"),
+              Slider(
+                  value: _brightness,
+                  onChanged: (double b) {
+                    setState(() {
+                      _brightness = b;
+                    });
                     Screen.setBrightness(b);
                   })
-                ]
-            )
-        ),
-      ),
-    );
+            ]))));
   }
 }
