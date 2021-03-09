@@ -1,3 +1,9 @@
+## 0.2.2
+* Added MIUI support.
+* Fixed android build.
+* Renamed plugin.
+* Added 'reset brightness' to example.
+
 ## 0.2.1
 * Formatted the example according to the [`dart_rules`](https://github.com/dart_rules).
 * Migrated example to null-safety.

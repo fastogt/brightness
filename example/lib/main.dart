@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
         home: Scaffold(
             appBar: AppBar(title: const Text('Brightness plugin example')),
             body: Center(
-                child: Column(children: <Widget>[
+                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               const Text("Brightness :"),
               Slider(
                   value: _brightness!,
