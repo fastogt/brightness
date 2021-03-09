@@ -1,5 +1,5 @@
-# Screen
-A Flutter plugin to manage the device's screen on Android and iOS.
+# Brightness
+A Flutter plugin to control brightness of the device's screen on Android and iOS.
 
 ## Usage
 To use this plugin, add `brightness` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
