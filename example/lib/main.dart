@@ -13,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isKeptOn = false;
   double _brightness = 1.0;
 
   @override
@@ -23,20 +22,18 @@ class _MyAppState extends State<MyApp> {
   }
 
   void initPlatformState() async {
-    double brightness = await Screen.brightness;
-    setState(() {
-      _brightness = brightness;
-    });
+    _brightness = await Screen.brightness;
+    if (mounted) setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-            appBar: AppBar(title: Text('Screen plugin example')),
+            appBar: AppBar(title: const Text('Screen plugin example')),
             body: Center(
                 child: Column(children: <Widget>[
-              Text("Brightness :"),
+              const Text("Brightness :"),
               Slider(
                   value: _brightness,
                   onChanged: (double b) {

@@ -50,13 +50,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  cupertino_icons:
-    dependency: "direct main"
+  dart_rules:
+    dependency: "direct dev"
     description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
+      path: "."
+      ref: main
+      resolved-ref: b170018608240c2b032808c37685ce650632d4c5
+      url: "https://github.com/fastogt/dart_rules.git"
+    source: git
+    version: "1.0.1"
   fake_async:
     dependency: transitive
     description:
