@@ -1,56 +1,57 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:brightness/brightness.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _MyAppState createState() => new _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  bool _isKeptOn = false;
+  double _brightness = 1.0;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await Brightness.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
+  initPlatformState() async {
+    bool keptOn = await Screen.isKeptOn;
+    double brightness = await Screen.brightness;
+    setState((){
+      _isKeptOn = keptOn;
+      _brightness = brightness;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+    return new MaterialApp(
+      home: new Scaffold(
+        appBar: new AppBar(title: new Text('Screen plugin example')),
+        body: new Center(
+            child: new Column(
+                children: <Widget>[
+                  new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new Text("Screen is kept on ? "),
+                      new Checkbox(value: _isKeptOn, onChanged: (bool b){
+                        Screen.keepOn(b);
+                        setState((){_isKeptOn = b; });
+                      })
+                    ]
+                  ),
+                  new Text("Brightness :"),
+                  new Slider(value : _brightness, onChanged : (double b){
+                    setState((){_brightness = b;});
+                    Screen.setBrightness(b);
+                  })
+                ]
+            )
         ),
       ),
     );
