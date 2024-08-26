@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 34
+    compileSdk flutter.compileSdkVersion
 
     namespace 'com.fastogt.brightness'
 
